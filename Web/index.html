@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="default">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{COMPANY_NAME}} — {{TAGLINE}}</title>
+
+  <!-- Google Fonts — swap per brand -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Brand config is injected server-side into window.BRAND -->
+  <script id="brand-config" type="application/json">
+    {
+      "companyName": "{{COMPANY_NAME}}",
+      "tagline": "{{TAGLINE}}",
+      "visualStyle": "{{VISUAL_STYLE}}",
+      "primaryColor": "{{PRIMARY_COLOR}}",
+      "accentColor": "{{ACCENT_COLOR}}",
+      "logoUrl": "{{LOGO_URL}}",
+      "navLinks": [
+        { "label": "Home", "href": "#hero" },
+        { "label": "Features", "href": "#features" },
+        { "label": "About", "href": "#about" },
+        { "label": "Contact", "href": "#contact" }
+      ],
+      "features": {{FEATURES_JSON}},
+      "socialLinks": {{SOCIAL_LINKS_JSON}}
+    }
+  </script>
+
+  <link rel="stylesheet" href="assets/css/base.css" />
+  <link rel="stylesheet" href="assets/css/components.css" />
+  <link rel="stylesheet" href="assets/css/animations.css" />
+  <!-- Brand-specific overrides loaded dynamically by brand-loader.js -->
+</head>
+<body class="style-{{VISUAL_STYLE}}">
+
+  <!-- ═══════════════════════════════════════
+       NAVIGATION
+  ════════════════════════════════════════ -->
+  <header class="site-header" id="site-header" role="banner">
+    <nav class="nav-container" aria-label="Primary navigation">
+      <a href="#hero" class="nav-logo" aria-label="{{COMPANY_NAME}} home">
+        <img src="{{LOGO_URL}}" alt="{{COMPANY_NAME}} logo" class="logo-img" id="nav-logo-img" />
+        <span class="logo-text" id="nav-logo-text">{{COMPANY_NAME}}</span>
+      </a>
+
+      <ul class="nav-links" id="nav-links" role="list"></ul>
+
+      <div class="nav-actions">
+        <button class="btn btn-ghost" id="nav-cta-secondary">Sign In</button>
+        <button class="btn btn-primary" id="nav-cta-primary">Get Started</button>
+        <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Mobile menu -->
+    <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+      <ul class="mobile-nav-links" id="mobile-nav-links" role="list"></ul>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!-- ═══════════════════════════════════════
+         HERO SECTION
+    ════════════════════════════════════════ -->
+    <section class="section hero-section" id="hero" aria-labelledby="hero-heading">
+      <div class="hero-bg-layer" aria-hidden="true">
+        <div class="hero-orb hero-orb--1"></div>
+        <div class="hero-orb hero-orb--2"></div>
+        <div class="hero-grid-overlay"></div>
+      </div>
+
+      <div class="container hero-content">
+        <div class="hero-badge animate-in" data-delay="0">
+          <span class="badge-dot"></span>
+          <span id="hero-badge-text">Now Available</span>
+        </div>
+
+        <h1 class="hero-heading animate-in" id="hero-heading" data-delay="100">
+          {{HERO_HEADLINE}}
+        </h1>
+
+        <p class="hero-subtext animate-in" id="hero-subtext" data-delay="200">
+          {{HERO_SUBTEXT}}
+        </p>
+
+        <div class="hero-actions animate-in" data-delay="300">
+          <button class="btn btn-primary btn-lg" id="hero-cta-primary">{{HERO_CTA_PRIMARY}}</button>
+          <button class="btn btn-outline btn-lg" id="hero-cta-secondary">{{HERO_CTA_SECONDARY}}</button>
+        </div>
+
+        <div class="hero-stats animate-in" id="hero-stats" data-delay="400"></div>
+      </div>
+
+      <div class="hero-visual animate-in" data-delay="200" aria-hidden="true">
+        <div class="hero-mockup" id="hero-mockup">
+          <!-- Injected by JS based on visualStyle -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         FEATURES SECTION
+    ════════════════════════════════════════ -->
+    <section class="section features-section" id="features" aria-labelledby="features-heading">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">Features</span>
+          <h2 class="section-heading" id="features-heading">{{FEATURES_HEADLINE}}</h2>
+          <p class="section-subtext">{{FEATURES_SUBTEXT}}</p>
+        </div>
+
+        <div class="features-grid" id="features-grid" role="list">
+          <!-- Feature cards injected by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         ABOUT / CTA BAND
+    ════════════════════════════════════════ -->
+    <section class="section about-section" id="about" aria-labelledby="about-heading">
+      <div class="container about-inner">
+        <div class="about-text">
+          <span class="section-label">About Us</span>
+          <h2 class="section-heading" id="about-heading">{{ABOUT_HEADLINE}}</h2>
+          <p class="about-body">{{ABOUT_BODY}}</p>
+          <button class="btn btn-primary" id="about-cta">Learn More</button>
+        </div>
+        <div class="about-visual" id="about-visual" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         CONTACT SECTION
+    ════════════════════════════════════════ -->
+    <section class="section contact-section" id="contact" aria-labelledby="contact-heading">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">Contact</span>
+          <h2 class="section-heading" id="contact-heading">Get In Touch</h2>
+        </div>
+
+        <form class="contact-form" id="contact-form" novalidate aria-label="Contact form">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="contact-name">Full Name</label>
+              <input class="form-input" type="text" id="contact-name" name="name"
+                placeholder="Jane Smith" autocomplete="name" required />
+              <span class="form-error" id="error-name" role="alert"></span>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="contact-email">Email Address</label>
+              <input class="form-input" type="email" id="contact-email" name="email"
+                placeholder="jane@example.com" autocomplete="email" required />
+              <span class="form-error" id="error-email" role="alert"></span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="contact-message">Message</label>
+            <textarea class="form-input form-textarea" id="contact-message" name="message"
+              placeholder="Tell us what you need..." rows="5" required></textarea>
+            <span class="form-error" id="error-message" role="alert"></span>
+          </div>
+          <button class="btn btn-primary btn-lg" type="submit" id="contact-submit">
+            <span class="btn-label">Send Message</span>
+            <span class="btn-loader" aria-hidden="true"></span>
+          </button>
+          <div class="form-success" id="form-success" role="status" aria-live="polite" hidden>
+            ✓ Message sent! We'll be in touch soon.
+          </div>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══════════════════════════════════════
+       FOOTER
+  ════════════════════════════════════════ -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <span class="footer-logo-text" id="footer-logo-text">{{COMPANY_NAME}}</span>
+        <p class="footer-tagline" id="footer-tagline">{{TAGLINE}}</p>
+      </div>
+
+      <nav class="footer-links" aria-label="Footer navigation">
+        <ul id="footer-nav-links" role="list"></ul>
+      </nav>
+
+      <div class="footer-social" id="footer-social" aria-label="Social links"></div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container">
+        <p>&copy; <span id="footer-year"></span> <span id="footer-company-name">{{COMPANY_NAME}}</span>. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast notification -->
+  <div class="toast" id="toast" role="alert" aria-live="assertive" aria-atomic="true"></div>
+
+  <!-- Scripts -->
+  <script src="assets/js/brand-loader.js" type="module"></script>
+  <script src="assets/js/components.js" type="module"></script>
+  <script src="assets/js/animations.js" type="module"></script>
+  <script src="assets/js/forms.js" type="module"></script>
+  <script src="assets/js/main.js" type="module"></script>
+</body>
+</html>
